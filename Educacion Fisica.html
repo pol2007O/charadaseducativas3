@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Disenio.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+    <div class="margenb"><input id="boton" type="button" value="Jugar" class="btn btn-primary" onclick="empezarjuego()"></div>
+
+<div class="palabra" id="palabra">CORRER</div>
+<div class="palabra" id="palabra2" style="display: none;">SALTAR</div>
+<div class="palabra" id="palabra3" style="display: none;">NADAR</div>
+<div class="palabra" id="palabra4" style="display: none;">CAMINAR</div>
+<div class="palabra" id="palabra5" style="display: none;">LANZAR</div>
+<div class="palabra" id="palabra6" style="display: none;">ATRAPAR</div>
+<div class="palabra" id="palabra7" style="display: none;">RODAR</div>
+<div class="palabra" id="palabra8" style="display: none;">BAILA</div>
+<div class="palabra" id="palabra9" style="display: none;">ESTIRAR</div>
+<div class="palabra" id="palabra10" style="display: none;">FLEXIONAR</div>
+<div class="palabra" id="palabra11" style="display: none;">LAGARTIJAS</div>
+<div class="palabra" id="palabra12" style="display: none;">SENTADILLAS</div>
+<div class="palabra" id="palabra13" style="display: none;">ESCALAR</div>
+<div class="palabra" id="palabra14" style="display: none;">PATEAR</div>
+<div class="palabra" id="palabra15" style="display: none;">GIRAR</div>
+<div class="palabra" id="palabra16" style="display: none;">ABDOMINALES</div>
+<div class="palabra" id="palabra17" style="display: none;">APLAUDIR</div>
+<div class="palabra" id="palabra18" style="display: none;">SILBAR</div>
+<div class="palabra" id="palabra19" style="display: none;">JUGAR</div>
+<div class="palabra" id="palabra20" style="display: none;">SALTAR LA CUERDA</div>
+<div class="palabra" id="palabra21" style="display: none;">REBOTAR</div>
+<div class="palabra" id="palabra22" style="display: none;">META</div>
+<div class="palabra" id="palabra23" style="display: none;">FUTBOL</div>
+<div class="palabra" id="palabra24" style="display: none;">BALONCESTO</div>
+<div class="palabra" id="palabra25" style="display: none;">YOGA</div>
+
+<div class="margenb2"><button class="bien" id="bien" onclick="cambio()"><img src="correcto.png" width="100%"></button></div>
+<div class="margenb3"><button class="mal" id="mal" onclick="marcarincorrectas()"><img src="descarga.png" width="100%"></button></div>
+
+<p class="blanc" style="color: white;">correctas: <span id="contadorcorrectas">0</span></p>
+<p class="blanc" style="color: white;">incorrectas: <span id="contadorincorrectas">0</span></p>
+
+<p id="mensajeFinal" style="color: white; text-align: center;"></p>
+
+<script>
+let index = -1;
+let correctas = 0;
+let incorrectas = 0;
+
+function empezarjuego(){
+  index = 0;
+  correctas = 0;
+  incorrectas = 0;
+  document.getElementById("contadorcorrectas").textContent =correctas;
+  document.getElementById("contadorincorrectas").textContent =incorrectas;
+
+  document.querySelectorAll('.palabra').forEach(p => p.style.display = 'none');
+  document.getElementById("palabra").style.display = "block";
+}
+
+function ocultarPalabraActual() {
+  let idActual = index === 0 ? "palabra" : "palabra" + (index + 1);
+  const palabraActual = document.getElementById(idActual);
+  if (palabraActual) {
+    palabraActual.style.display = "none";
+  }
+}
+
+function mostrarSiguientePalabra() {
+  index++;
+  let idSiguiente = index === 0 ? "palabra" : "palabra" + (index + 1);
+  const siguiente = document.getElementById(idSiguiente);
+  if (siguiente) {
+    siguiente.style.display = "block";
+  } else {
+  document.getElementById("mensajeFinal").textContent =
+      "Juego terminado. Correctas: " + correctas + " | Incorrectas: " + incorrectas;
+  }
+}
+
+function cambio() {
+  correctas++;
+  document.getElementById("contadorcorrectas").textContent =correctas;
+  ocultarPalabraActual();
+  mostrarSiguientePalabra();
+}
+
+function marcarincorrectas() {
+  incorrectas++;
+  document.getElementById("contadorincorrectas").textContent =incorrectas;
+  ocultarPalabraActual();
+  mostrarSiguientePalabra();
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Disenio.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+    
+<div class="margenb"><input id="boton" type="button" value="Jugar" class="btn btn-primary" onclick="empezarjuego()"></div>
+
+<div class="palabra" id="palabra">MAPA</div>
+<div class="palabra" id="palabra2" style="display: none;">BANDERA</div>
+<div class="palabra" id="palabra3" style="display: none;">PAIS</div>
+<div class="palabra" id="palabra4" style="display: none;">VOTAR</div>
+<div class="palabra" id="palabra5" style="display: none;">ESCUELA</div>
+<div class="palabra" id="palabra6" style="display: none;">CASA</div>
+<div class="palabra" id="palabra7" style="display: none;">PUEBLO</div>
+<div class="palabra" id="palabra8" style="display: none;">POLICIA</div>
+<div class="palabra" id="palabra9" style="display: none;">MAESTRO</div>
+<div class="palabra" id="palabra10" style="display: none;">NIÑO</div>
+<div class="palabra" id="palabra11" style="display: none;">MERCADO</div>
+<div class="palabra" id="palabra12" style="display: none;">DOCTOR</div>
+<div class="palabra" id="palabra13" style="display: none;">COCHE</div>
+<div class="palabra" id="palabra14" style="display: none;">AVION</div>
+<div class="palabra" id="palabra15" style="display: none;">TREN</div>
+<div class="palabra" id="palabra16" style="display: none;">MONTAÑA</div>
+<div class="palabra" id="palabra17" style="display: none;">MAR</div>
+<div class="palabra" id="palabra18" style="display: none;">SOL</div>
+<div class="palabra" id="palabra19" style="display: none;">LLUVIA</div>
+<div class="palabra" id="palabra20" style="display: none;">CAMINAR</div>
+<div class="palabra" id="palabra21" style="display: none;">TRABAJO</div>
+<div class="palabra" id="palabra22" style="display: none;">SOLDADO</div>
+<div class="palabra" id="palabra23" style="display: none;">ALCALDE</div>
+<div class="palabra" id="palabra24" style="display: none;">IGLESIA</div>
+<div class="palabra" id="palabra25" style="display: none;">CAMPANA</div>
+
+<div class="margenb2"><button class="bien" id="bien" onclick="cambio()"><img src="correcto.png" width="100%"></button></div>
+<div class="margenb3"><button class="mal" id="mal" onclick="marcarincorrectas()"><img src="descarga.png" width="100%"></button></div>
+
+
+
+<p class="blanc" style="color: white;">correctas: <span id="contadorcorrectas">0</span></p>
+<p class="blanc" style="color: white;">incorrectas: <span id="contadorincorrectas">0</span></p>
+
+<p id="mensajeFinal" style="color: white; text-align: center;"></p>
+
+<script>
+let index = -1;
+let correctas = 0;
+let incorrectas = 0;
+
+function empezarjuego(){
+  index = 0;
+  correctas = 0;
+  incorrectas = 0;
+  document.getElementById("contadorcorrectas").textContent =correctas;
+  document.getElementById("contadorincorrectas").textContent =incorrectas;
+
+  document.querySelectorAll('.palabra').forEach(p => p.style.display = 'none');
+  document.getElementById("palabra").style.display = "block";
+}
+
+function ocultarPalabraActual() {
+  let idActual = index === 0 ? "palabra" : "palabra" + (index + 1);
+  const palabraActual = document.getElementById(idActual);
+  if (palabraActual) {
+    palabraActual.style.display = "none";
+  }
+}
+
+function mostrarSiguientePalabra() {
+  index++;
+  let idSiguiente = index === 0 ? "palabra" : "palabra" + (index + 1);
+  const siguiente = document.getElementById(idSiguiente);
+  if (siguiente) {
+    siguiente.style.display = "block";
+  } else {
+    document.getElementById("mensajeFinal").textContent =
+      "Juego terminado. Correctas: " + correctas + " | Incorrectas: " + incorrectas;
+  }
+}
+
+function cambio() {
+  correctas++;
+  document.getElementById("contadorcorrectas").textContent =correctas;
+  ocultarPalabraActual();
+  mostrarSiguientePalabra();
+}
+
+function marcarincorrectas() {
+  incorrectas++;
+  document.getElementById("contadorincorrectas").textContent =incorrectas;
+  ocultarPalabraActual();
+  mostrarSiguientePalabra();
+}
+
+</script>
+
+
+
+<script src="Funcionamiento.js"></script>
+</body>
+</html>
